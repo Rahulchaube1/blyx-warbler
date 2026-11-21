@@ -1,0 +1,38 @@
+use framesignal;
+use clipruns;
+
+fn warbler_finite(values: vector) -> bool {
+    let mut i = 0;
+    while i < len(values) {
+        let value = at(values, i);
+        if !(value - value == 0.0) {
+            return false;
+        }
+        i += 1;
+    }
+    true
+}
+
+fn warbler_compute(samples: vector, ceiling: f64, allowed: f64) -> vector {
+    let signal = framesignal_level(samples);
+    let clips = clipruns_count(samples, ceiling);
+    if len(signal) == 0 || len(clips) == 0 {
+        return [];
+    }
+    let mut alert = 0;
+    if at(clips, 1) > allowed {
+        alert = 1;
+    }
+    [at(signal, 0), at(signal, 1), at(clips, 1), alert]
+}
+
+// Flag sustained clipping while reporting the energy of an audio frame.
+// Returns [peak, mean square, longest clipped run, alert]. Alert means the longest run exceeded the allowed number of samples.
+pub fn warbler_meter(samples: vector, ceiling: f64, allowed: f64) -> vector {
+    if !warbler_finite(samples) { return []; }
+    if !(ceiling > 0.0 && ceiling - ceiling == 0.0) { return []; }
+    if !(allowed >= 0.0 && allowed <= 9007199254740991.0 && allowed % 1.0 == 0.0) { return []; }
+    let result = warbler_compute(samples, ceiling, allowed);
+    if !warbler_finite(result) { return []; }
+    result
+}

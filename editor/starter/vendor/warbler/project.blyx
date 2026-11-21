@@ -1,0 +1,30 @@
+use std::cli;
+use console;
+use warbler;
+
+fn main() {
+    let argv = cli_args();
+    let count = args_len(argv);
+    if count == 1 && args_at(argv, 0) == "--help" {
+        println!("Flag sustained clipping while reporting the energy of an audio frame.");
+        println!("Usage: warbler samples ceiling allowed");
+        println!("Vector arguments are comma-separated; use [] for an empty vector.");
+        return;
+    }
+    let mut result = [];
+    if count == 0 {
+        result = warbler_meter([1, -1, 0, 0], 1.0, 1.0);
+    } else {
+        if count != 3 { stderr_line("Wrong argument count. Use --help."); process_exit(2); }
+        let samples = console_vector(args_at(argv, 0));
+        let ceiling = console_value(args_at(argv, 1));
+        let allowed = console_value(args_at(argv, 2));
+        result = warbler_meter(samples, ceiling, allowed);
+    }
+    if len(result) == 0 { stderr_line("Invalid input for Warbler. See the package input contract."); process_exit(1); }
+    let mut i = 0;
+    while i < len(result) {
+        println!(at(result, i));
+        i += 1;
+    }
+}

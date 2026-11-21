@@ -1,0 +1,49 @@
+use std::cli;
+use std::text;
+
+// Numeric vectors are immutable literals in Blyx 0.2.1. This CSV adapter handles up to 16 cells.
+// Import the package API directly for longer inputs.
+pub fn console_value(raw: str) -> f64 {
+    if !text_is_number(raw) { stderr_line("Expected a finite decimal number."); process_exit(2); }
+    text_number(raw)
+}
+
+pub fn console_vector(raw: str) -> vector {
+    if raw == "[]" { return []; }
+    let cells = text_split(raw, ",");
+    let size = args_len(cells);
+    if size > 16 { stderr_line("Vector CLI arguments support up to 16 entries. Import the API for longer vectors."); process_exit(2); }
+    let v0 = console_value(args_at(cells, 0));
+    if size == 1 { return [v0]; }
+    let v1 = console_value(args_at(cells, 1));
+    if size == 2 { return [v0, v1]; }
+    let v2 = console_value(args_at(cells, 2));
+    if size == 3 { return [v0, v1, v2]; }
+    let v3 = console_value(args_at(cells, 3));
+    if size == 4 { return [v0, v1, v2, v3]; }
+    let v4 = console_value(args_at(cells, 4));
+    if size == 5 { return [v0, v1, v2, v3, v4]; }
+    let v5 = console_value(args_at(cells, 5));
+    if size == 6 { return [v0, v1, v2, v3, v4, v5]; }
+    let v6 = console_value(args_at(cells, 6));
+    if size == 7 { return [v0, v1, v2, v3, v4, v5, v6]; }
+    let v7 = console_value(args_at(cells, 7));
+    if size == 8 { return [v0, v1, v2, v3, v4, v5, v6, v7]; }
+    let v8 = console_value(args_at(cells, 8));
+    if size == 9 { return [v0, v1, v2, v3, v4, v5, v6, v7, v8]; }
+    let v9 = console_value(args_at(cells, 9));
+    if size == 10 { return [v0, v1, v2, v3, v4, v5, v6, v7, v8, v9]; }
+    let v10 = console_value(args_at(cells, 10));
+    if size == 11 { return [v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10]; }
+    let v11 = console_value(args_at(cells, 11));
+    if size == 12 { return [v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11]; }
+    let v12 = console_value(args_at(cells, 12));
+    if size == 13 { return [v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12]; }
+    let v13 = console_value(args_at(cells, 13));
+    if size == 14 { return [v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13]; }
+    let v14 = console_value(args_at(cells, 14));
+    if size == 15 { return [v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14]; }
+    let v15 = console_value(args_at(cells, 15));
+    if size == 16 { return [v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15]; }
+    []
+}

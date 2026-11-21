@@ -1,4 +1,4 @@
-Blyx package artwork and bird marks. Pictograms from Lucide.
+The current framework mark depicts the Yellow warbler. Earlier editions used Lucide pictograms. Their licenses follow.
 
 ISC License
 

@@ -1,0 +1,14 @@
+use warbler;
+
+fn main() {
+    let samples = [1, -1, 0, 0];
+    let ceiling = 1.0;
+    let allowed = 1.0;
+    let result = warbler_meter(samples, ceiling, allowed);
+    if len(result) == 0 { println!("invalid"); return; }
+    let mut i = 0;
+    while i < len(result) {
+        println!(at(result, i));
+        i += 1;
+    }
+}
