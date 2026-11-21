@@ -4,14 +4,14 @@
 
 Flag sustained clipping while reporting the energy of an audio frame. This Blyx workflow framework is part of the vision, audio and speech collection.
 
-Identical peak readings can represent a single transient or a sustained overload. Inspect run length alongside frame energy. [librosa, frame energy](https://librosa.org/doc/latest/generated/librosa.feature.rms.html)
+Identical peak readings can represent a single transient or a sustained overload. Inspect run length alongside frame energy. [librosa, frame energy](https://librosa.org/doc/0.11.0/generated/librosa.feature.rms.html)
 
 ## Install and run
 
 Install [Blyx 0.2.1](https://www.blyx-lang.space/download) with a Rust toolchain and host linker for native builds.
 
 ```sh
-git clone --depth 1 --branch v0.1.0 https://github.com/Rahulchaube1/blyx-warbler.git
+git clone --depth 1 --branch v0.1.1 https://github.com/Rahulchaube1/blyx-warbler.git
 cd blyx-warbler
 blyxc native-run example.blyx
 blyxc native-run tests.blyx
@@ -24,7 +24,7 @@ blyxc native-run tests.blyx
 Run this in the directory containing your application's entry file.
 
 ```sh
-git clone --depth 1 --branch v0.1.0 https://github.com/Rahulchaube1/blyx-warbler.git vendor/warbler
+git clone --depth 1 --branch v0.1.1 https://github.com/Rahulchaube1/blyx-warbler.git vendor/warbler
 ```
 
 ```blyx
@@ -75,8 +75,8 @@ blyxc native-run project.blyx -- "1,-1,0,0" 1 1
 
 ## Libraries
 
-- [FrameSignal](https://github.com/Rahulchaube1/blyx-framesignal/tree/v0.1.0) — Measure peak amplitude and mean-square energy of a signal frame.
-- [ClipRuns](https://github.com/Rahulchaube1/blyx-clipruns/tree/v0.1.0) — Count overloaded samples and the longest continuous run.
+- [FrameSignal](https://github.com/Rahulchaube1/blyx-framesignal/tree/v0.1.1) — Measure peak amplitude and mean-square energy of a signal frame.
+- [ClipRuns](https://github.com/Rahulchaube1/blyx-clipruns/tree/v0.1.1) — Count overloaded samples and the longest continuous run.
 
 This release includes identical copies of both library modules so a tagged clone can build offline.
 
